@@ -32,15 +32,6 @@ def getTimeInfo(csvfile):
 
     return totaltime / totalposts
 
-def getAvgTimes():
-    print("average time open (pytorch):\t", getTimeInfo(open("data/PytorchQueryResults.csv")))
-    print("average time open (mxnet):\t\t", getTimeInfo(open("data/MXnetQueryResults.csv")))
-    print("average time open (keras):\t\t", getTimeInfo(open("data/KerasQueryResults.csv")))
-    print("average time open (tensorflow):\t", getTimeInfo(open("data/TensorflowQueryResults.csv")))
-    print("average time open (caffe):\t\t", getTimeInfo(open("data/CaffeQueryResults.csv")))
-    print("average time open (Dl4j):\t\t", getTimeInfo(open("data/DL4jQueryResults.csv")))
-    print("average time open (dlib):\t\t", getTimeInfo(open("data/DLibQueryResults.csv")))
-    print("average time open (theano):\t\t", getTimeInfo(open("data/TheanoQueryResults.csv")))
 
 
 def getRepInfo(csvfile):
@@ -67,22 +58,3 @@ def getRepInfo(csvfile):
     vals = [int(x) for x in users.values()]
 
     return sum(vals) / len(vals), max(vals), min(vals)
-
-def getAvgReps():
-    print("avg/max/min user rep (tensorflow):\t", getRepInfo(open("data/TensorflowQueryResults.csv")))
-    print("avg/max/min user rep (keras):\t\t", getRepInfo(open("data/KerasQueryResults.csv")))
-    print("avg/max/min user rep (pytorch):\t\t", getRepInfo(open("data/PytorchQueryResults.csv")))
-    print("avg/max/min user rep (mxnet):\t\t", getRepInfo(open("data/MXnetQueryResults.csv")))
-    print("avg/max/min user rep (caffe):\t\t", getRepInfo(open("data/CaffeQueryResults.csv")))
-    print("avg/max/min user rep (theano):\t\t", getRepInfo(open("data/TheanoQueryResults.csv")))
-    print("avg/max/min user rep (Dl4j):\t\t", getRepInfo(open("data/DL4jQueryResults.csv")))
-    print("avg/max/min user rep (dlib):\t\t", getRepInfo(open("data/DLibQueryResults.csv")))
-
-
-def main():
-    # getAvgTimes()
-
-    getAvgReps()
-
-if __name__=="__main__":
-    main()
