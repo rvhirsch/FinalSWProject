@@ -52,7 +52,7 @@ WHERE
   AND Posts.Tags NOT LIKE '%javascript%'
 ;
 
-- Python Query Results
+- PythonQueryResults
 
 SELECT
   Posts.Id,
