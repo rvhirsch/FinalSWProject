@@ -6,8 +6,8 @@ def getTimeInfo(csvfile):
 
     opendate = -1
     closedate = -1
-    totaltime = 0
-    totalposts = 0
+
+    times = []
 
     firstLine = True
     for row in csvreader:
@@ -23,16 +23,8 @@ def getTimeInfo(csvfile):
                 closed = dp.parse(row[closedate])
 
                 diff = closed - opened
-                if totaltime == 0:
-                    totaltime = diff
-                # print(opened, "\t-\t", closed, "\t=\t", diff)
-
-                totaltime += diff
-                totalposts += 1
-
-    return totaltime / totalposts
-
-
+                times.append(diff)
+    return times
 
 def getRepInfo(csvfile):
     csvreader = csv.reader(csvfile, delimiter=",")
@@ -46,15 +38,80 @@ def getRepInfo(csvfile):
     for row in csvreader:
         if firstLine:
             headers = row
-            # print(row)
             userid = headers.index("UserId")
             rep = headers.index("Reputation")
             firstLine = False
         else:
             users[row[userid]] = row[rep]
+    return [int(x) for x in users.values()]
 
-    # print(users)
+def getAnswersInfo(csvfile):
+    csvreader = csv.reader(csvfile, delimiter=",")
 
-    vals = [int(x) for x in users.values()]
+    answercount = -1
 
-    return sum(vals) / len(vals), max(vals), min(vals)
+    answers = []
+
+    firstLine = True
+    for row in csvreader:
+        if firstLine:
+            headers = row
+            answercount = headers.index("AnswerCount")
+            firstLine = False
+        else:
+            count = int(row[answercount])
+            answers.append(count)
+    return answers
+
+def getCommentsInfo(csvfile):
+    csvreader = csv.reader(csvfile, delimiter=",")
+
+    commentcount = -1
+    comments = []
+
+    firstLine = True
+    for row in csvreader:
+        if firstLine:
+            headers = row
+            commentcount = headers.index("CommentCount")
+            firstLine = False
+        else:
+            count = int(row[commentcount])
+            comments.append(count)
+    return comments
+
+def getScoreInfo(csvfile):
+    csvreader = csv.reader(csvfile, delimiter=",")
+
+    score = -1
+    # minans = 100000000000
+    # maxans = -1
+    # totalans = 0
+    # totalposts = 0
+
+    scores = []
+
+    firstLine = True
+    for row in csvreader:
+        if firstLine:
+            headers = row
+            score = headers.index("Score")
+            firstLine = False
+        else:
+            count = int(row[score])
+            scores.append(count)
+            # if count > maxans:
+            #     maxans = count
+            # elif count < minans:
+            #     minans = count
+            # totalans += count
+            # totalposts += 1
+
+    # return totalans / totalposts, maxans, minans
+    return scores
+
+def main():
+    print(getAnswersInfo(open("data/PytorchQueryResults.csv")))
+
+if __name__ == '__main__':
+    main()
