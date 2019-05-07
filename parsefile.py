@@ -33,10 +33,11 @@ def getDateInfo(csvfile):
     return totaltime / totalposts
 
 def main():
-    filename = "QueryResults.csv"
+    filename = "data/QueryResults.csv"
+    javafilename = "data/JavaQueryResults.csv"
 
-    with open(filename) as csvfile:
-        print("average time open:", getDateInfo(csvfile))
+    print("average time open (all):", getDateInfo(open(filename)))
+    print("average time open (java):", getDateInfo(open(javafilename)))
 
 
 if __name__=="__main__":
