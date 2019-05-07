@@ -35,9 +35,11 @@ def getDateInfo(csvfile):
 def main():
     filename = "data/QueryResults.csv"
     javafilename = "data/JavaQueryResults.csv"
+    pythonfilename = "data/PythonQueryResults.csv"
 
-    print("average time open (all):", getDateInfo(open(filename)))
-    print("average time open (java):", getDateInfo(open(javafilename)))
+    print("average time open (all):\t", getDateInfo(open(filename)))
+    print("average time open (java):\t", getDateInfo(open(javafilename)))
+    print("average time open (python):\t", getDateInfo(open(pythonfilename)))
 
 
 if __name__=="__main__":
