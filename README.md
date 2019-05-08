@@ -26,6 +26,6 @@ WHERE
   AND Posts.Tags LIKE '%libraryname%'
 ;
 
-- getAvgTimes() - returns average dateClosed-dateOpened
+- Fig 1: boxplots of data for all repos
 
-- getAvgRep() - returns average user reputation
+- Fig 2: word clouds for each repo
