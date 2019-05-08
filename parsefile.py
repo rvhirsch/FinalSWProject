@@ -163,11 +163,19 @@ def DownVotesInfo(csvfile):
     return DownVotes
 
 
+def cleanhtml(row):
+    currstr = str(row)
+    cleanr = re.compile('<.*?>')
+    cleantext = re.sub(cleanr, '', currstr)
+    rowstr = re.sub('\W+ ', '', cleantext)
+    return rowstr
+
 def CountKeyWords(csvfile):
     csvreader = csv.reader(csvfile, delimiter=",")
 
     KeyWord = 1
     KeyWords = ['python', 'java', 'c++', 'scala']
+    allwords = []
     firstLine = True
     for row in csvreader:
         if firstLine:
@@ -175,11 +183,14 @@ def CountKeyWords(csvfile):
             score = headers.index("Body")
             firstLine = False
         else:
-            rowstr = re.sub('\W+ ', '', str(row[KeyWord]))
-            comment = str(rowstr)
-            comment_split = comment.split()
-            CounterWords = Counter(comment_split)
-            Keywords = CounterWords.most_common(2)
+            # currstr = str(row[KeyWord])
+            # cleanr = re.compile('<.*?>')
+            # cleantext = re.sub(cleanr, '', currstr)
+            # rowstr = re.sub('\W+ ', '', cleantext)
+            allwords.extend(cleanhtml(row[KeyWord]).split())
+
+    CounterWords = Counter(allwords)
+    Keywords = CounterWords.most_common(10)
 
     return Keywords
 
