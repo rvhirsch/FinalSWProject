@@ -173,21 +173,18 @@ def cleanhtml(row):
 def CountKeyWords(csvfile):
     csvreader = csv.reader(csvfile, delimiter=",")
 
-    KeyWord = 1
-    KeyWords = ['python', 'java', 'c++', 'scala']
+    body = -1
+    # KeyWord = 1
+    # KeyWords = ['python', 'java', 'c++', 'scala']
     allwords = []
     firstLine = True
     for row in csvreader:
         if firstLine:
             headers = row
-            score = headers.index("Body")
+            body = headers.index("Body")
             firstLine = False
         else:
-            # currstr = str(row[KeyWord])
-            # cleanr = re.compile('<.*?>')
-            # cleantext = re.sub(cleanr, '', currstr)
-            # rowstr = re.sub('\W+ ', '', cleantext)
-            allwords.extend(cleanhtml(row[KeyWord]).split())
+            allwords.extend(cleanhtml(row[body]).split())
 
     CounterWords = Counter(allwords)
     Keywords = CounterWords.most_common(10)
