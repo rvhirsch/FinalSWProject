@@ -51,6 +51,28 @@ def getAvgScore():
     print("avg/max/min score (tensorflow):\t", parsefile.getScoreInfo(open("data/TensorflowQueryResults.csv")))
     print("avg/max/min score (theano):\t\t", parsefile.getScoreInfo(open("data/TheanoQueryResults.csv")))
 
+def getAvgUpVotes():
+    print("avg/max/min UpVotes (mxnet):\t\t", parsefile.upVotesInfo(open("data/MXnetQueryResults.csv")))
+    print("avg/max/min UpVotes (Dl4j):\t\t", parsefile.upVotesInfo(open("data/DL4jQueryResults.csv")))
+    print("avg/max/min UpVotes (dlib):\t\t", parsefile.upVotesInfo(open("data/DLibQueryResults.csv")))
+    print("avg/max/min UpVotes (pytorch):\t", parsefile.upVotesInfo(open("data/PytorchQueryResults.csv")))
+    print("avg/max/min UpVotes (keras):\t\t", parsefile.upVotesInfo(open("data/KerasQueryResults.csv")))
+    print("avg/max/min UpVotes (caffe):\t\t", parsefile.upVotesInfo(open("data/CaffeQueryResults.csv")))
+    print("avg/max/min UpVotes (tensorflow):\t", parsefile.upVotesInfo(open("data/TensorflowQueryResults.csv")))
+    print("avg/max/min UpVotes (theano):\t\t", parsefile.upVotesInfo(open("data/TheanoQueryResults.csv")))
+
+
+def getAvgDownVotes():
+    print("avg/max/min UpVotes (mxnet):\t\t", parsefile.DownVotesInfo(open("data/MXnetQueryResults.csv")))
+    print("avg/max/min UpVotes (Dl4j):\t\t", parsefile.DownVotesInfo(open("data/DL4jQueryResults.csv")))
+    print("avg/max/min UpVotes (dlib):\t\t", parsefile.DownVotesInfo(open("data/DLibQueryResults.csv")))
+    print("avg/max/min UpVotes (pytorch):\t", parsefile.DownVotesInfo(open("data/PytorchQueryResults.csv")))
+    print("avg/max/min UpVotes (keras):\t\t", parsefile.DownVotesInfo(open("data/KerasQueryResults.csv")))
+    print("avg/max/min UpVotes (caffe):\t\t", parsefile.DownVotesInfo(open("data/CaffeQueryResults.csv")))
+    print("avg/max/min UpVotes (tensorflow):\t", parsefile.DownVotesInfo(open("data/TensorflowQueryResults.csv")))
+    print("avg/max/min UpVotes (theano):\t\t", parsefile.DownVotesInfo(open("data/TheanoQueryResults.csv")))
+
+
 def convertData(data):
     try:
         newdata = [x.days for x in data]
@@ -92,20 +114,26 @@ def graphStats(getfunction, title, ax):
 def main():
     plt.figure(1, figsize=(20, 10))
 
-    ax = plt.subplot(2, 3, 1)
+    ax = plt.subplot(2, 4, 1)
     graphStats(parsefile.getTimeInfo, "Amt Time Open", ax)
 
-    ax = plt.subplot(2, 3, 2)
+    ax = plt.subplot(2, 4, 2)
     graphStats(parsefile.getRepInfo, "User Reputation", ax)
 
-    ax = plt.subplot(2, 3, 3)
+    ax = plt.subplot(2, 4, 3)
     graphStats(parsefile.getAnswersInfo, "# Answers", ax)
 
-    ax = plt.subplot(2, 3, 4)
+    ax = plt.subplot(2, 4, 4)
     graphStats(parsefile.getCommentsInfo, "# Comments", ax)
 
-    ax = plt.subplot(2, 3, 5)
+    ax = plt.subplot(2, 4, 5)
     graphStats(parsefile.getCommentsInfo, "Score", ax)
+
+    ax = plt.subplot(2, 4, 6)
+    graphStats(parsefile.upVotesInfo, "UpVotes", ax)
+
+    ax = plt.subplot(2, 4, 7)
+    graphStats(parsefile.DownVotesInfo, "DownVotes", ax)
 
     plt.show()
 

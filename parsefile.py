@@ -110,6 +110,58 @@ def getScoreInfo(csvfile):
     # return totalans / totalposts, maxans, minans
     return scores
 
+
+def upVotesInfo(csvfile):
+    csvreader = csv.reader(csvfile, delimiter=",")
+
+    UpVote = -1
+    UpVotes = []
+    firstLine = True
+    for row in csvreader:
+        if firstLine:
+            headers = row
+            score = headers.index("UpVotes")
+            firstLine = False
+        else:
+            countVote = int(row[UpVote])
+            UpVotes.append(countVote)
+            # if count > maxans:
+            #     maxans = count
+            # elif count < minans:
+            #     minans = count
+            # totalans += count
+            # totalposts += 1
+
+    # return totalans / totalposts, maxans, minans
+    return UpVotes
+
+
+def DownVotesInfo(csvfile):
+    csvreader = csv.reader(csvfile, delimiter=",")
+
+    DownVote = -1
+    DownVotes = []
+    firstLine = True
+    for row in csvreader:
+        if firstLine:
+            headers = row
+            score = headers.index("DownVotes")
+            firstLine = False
+        else:
+            countVote = int(row[DownVote])
+            DownVotes.append(countVote)
+            # if count > maxans:
+            #     maxans = count
+            # elif count < minans:
+            #     minans = count
+            # totalans += count
+            # totalposts += 1
+
+    # return totalans / totalposts, maxans, minans
+    return DownVotes
+
+
+
 def main():
     print(getAnswersInfo(open("data/PytorchQueryResults.csv")))
 
