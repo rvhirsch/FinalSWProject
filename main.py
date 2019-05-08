@@ -1,5 +1,7 @@
 import parsefile
+import random
 import matplotlib.pyplot as plt
+from wordcloud import WordCloud
 
 def getAvgTimes():
     print("time open (pytorch):\t", parsefile.getTimeInfo(open("data/PytorchQueryResults.csv")))
@@ -73,7 +75,7 @@ def getAvgDownVotes():
     print("avg/max/min UpVotes (theano):\t\t", parsefile.DownVotesInfo(open("data/TheanoQueryResults.csv")))
 
 def prettyprintKeywords(keywords):
-    return " ".join(["{:20}".format(str(x)) for x in keywords])
+    return " ".join(["{:25}".format(str(x)) for x in keywords])
 
 def getKeyWords():
     print("Most common words used in (mxnet):\t\t", prettyprintKeywords(parsefile.CountKeyWords(open("data/MXnetQueryResults.csv"))))
@@ -123,7 +125,14 @@ def graphStats(getfunction, title, ax):
     ax.set_xticklabels(["PyTorch", "Tensorflow", "MXnet", "Keras", "Caffe", "DL4j", "DLib", "Theano"], rotation=45)
     ax.set_title(title)
 
-def main():
+def graphWords(text, ax, title):
+    wordcloud = WordCloud(background_color='white').generate(text)
+    plt.imshow(wordcloud, interpolation="bilinear")
+    plt.axis("off")
+    ax.set_title("~"+title+"~", fontsize=50)
+    # plt.show()
+
+def plotfig1():
     plt.figure(1, figsize=(20, 10))
 
     ax = plt.subplot(2, 4, 1)
@@ -149,7 +158,66 @@ def main():
 
     plt.show()
 
-    getKeyWords()
+def concatallwords(words):
+    sent = []
+    for k,v in words:
+        sent.extend([k] * v)
+    random.shuffle(sent)
+    return " ".join(sent)
+
+def plotfig2():
+    plt.figure(2, figsize=(20, 10))
+
+    ax = plt.subplot(3, 3, 1)
+    words = parsefile.CountKeyWords(open("data/MXnetQueryResults.csv"))
+    graphWords(concatallwords(words), ax, "MXnet")
+    print("Done *")
+
+    ax = plt.subplot(3, 3, 2)
+    words = parsefile.CountKeyWords(open("data/DL4jQueryResults.csv"))
+    graphWords(concatallwords(words), ax, "DL4j")
+    print("Done **")
+
+    ax = plt.subplot(3, 3, 3)
+    words = parsefile.CountKeyWords(open("data/DLibQueryResults.csv"))
+    graphWords(concatallwords(words), ax, "DLib")
+    print("Done ***")
+
+    ax = plt.subplot(3, 3, 4)
+    words = parsefile.CountKeyWords(open("data/PytorchQueryResults.csv"))
+    graphWords(concatallwords(words), ax, "PyTorch")
+    print("Done ****")
+
+    ax = plt.subplot(3, 3, 5)
+    words = parsefile.CountKeyWords(open("data/KerasQueryResults.csv"))
+    graphWords(concatallwords(words), ax, "Keras")
+    print("Done *****")
+
+    ax = plt.subplot(3, 3, 6)
+    words = parsefile.CountKeyWords(open("data/CaffeQueryResults.csv"))
+    graphWords(concatallwords(words), ax, "Caffe")
+    print("Done ******")
+
+    ax = plt.subplot(3, 3, 7)
+    words = parsefile.CountKeyWords(open("data/TensorflowQueryResults.csv"))
+    graphWords(concatallwords(words), ax, "TensorFlow")
+    print("Done *******")
+
+    ax = plt.subplot(3, 3, 8)
+    words = parsefile.CountKeyWords(open("data/TheanoQueryResults.csv"))
+    graphWords(concatallwords(words), ax, "Theano")
+    print("Done ********")
+
+    plt.tight_layout(pad=0.4, w_pad=0.5, h_pad=1.0)
+    plt.show()
+
+def main():
+    # plotfig1()
+    plotfig2()
+
+    # getKeyWords()
+
+
 
 
 

@@ -167,8 +167,17 @@ def cleanhtml(row):
     currstr = str(row)
     cleanr = re.compile('<.*?>')
     cleantext = re.sub(cleanr, '', currstr)
-    rowstr = re.sub('\W+ ', '', cleantext)
+    # rowstr = re.sub('\W+ ', '', cleantext)
+    rowstr = "".join([x for x in cleantext if x.isalnum() or x == " "])
     return rowstr
+
+def checkifsmall(x):
+    # return x != "the" and x != "to" and x != "I" and x != "a" and x != "of" and x != "in" and x != "is" and x != "and" and x != "with" and x != "for" and x != "as" and x != "this" and x != "my" and x != "have"
+    return len(x) > 5
+
+def removesmallwords(allwords):
+    return [x for x in allwords if checkifsmall(x)]
+
 
 def CountKeyWords(csvfile):
     csvreader = csv.reader(csvfile, delimiter=",")
@@ -184,7 +193,8 @@ def CountKeyWords(csvfile):
             body = headers.index("Body")
             firstLine = False
         else:
-            allwords.extend(cleanhtml(row[body]).split())
+            newwords = removesmallwords(cleanhtml(row[body]).split())
+            allwords.extend(newwords)
 
     CounterWords = Counter(allwords)
     Keywords = CounterWords.most_common(10)
