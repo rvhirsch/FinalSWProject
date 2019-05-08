@@ -51,6 +51,41 @@ def getAvgScore():
     print("score (tensorflow):\t", parsefile.getScoreInfo(open("data/TensorflowQueryResults.csv")))
     print("score (theano):\t\t", parsefile.getScoreInfo(open("data/TheanoQueryResults.csv")))
 
+def getAvgUpVotes():
+    print("avg/max/min UpVotes (mxnet):\t\t", parsefile.UpVotesInfo(open("data/MXnetQueryResults.csv")))
+    print("avg/max/min UpVotes (Dl4j):\t\t", parsefile.UpVotesInfo(open("data/DL4jQueryResults.csv")))
+    print("avg/max/min UpVotes (dlib):\t\t", parsefile.UpVotesInfo(open("data/DLibQueryResults.csv")))
+    print("avg/max/min UpVotes (pytorch):\t", parsefile.UpVotesInfo(open("data/PytorchQueryResults.csv")))
+    print("avg/max/min UpVotes (keras):\t\t", parsefile.UpVotesInfo(open("data/KerasQueryResults.csv")))
+    print("avg/max/min UpVotes (caffe):\t\t", parsefile.UpVotesInfo(open("data/CaffeQueryResults.csv")))
+    print("avg/max/min UpVotes (tensorflow):\t", parsefile.UpVotesInfo(open("data/TensorflowQueryResults.csv")))
+    print("avg/max/min UpVotes (theano):\t\t", parsefile.UpVotesInfo(open("data/TheanoQueryResults.csv")))
+
+
+def getAvgDownVotes():
+    print("avg/max/min UpVotes (mxnet):\t\t", parsefile.DownVotesInfo(open("data/MXnetQueryResults.csv")))
+    print("avg/max/min UpVotes (Dl4j):\t\t", parsefile.DownVotesInfo(open("data/DL4jQueryResults.csv")))
+    print("avg/max/min UpVotes (dlib):\t\t", parsefile.DownVotesInfo(open("data/DLibQueryResults.csv")))
+    print("avg/max/min UpVotes (pytorch):\t", parsefile.DownVotesInfo(open("data/PytorchQueryResults.csv")))
+    print("avg/max/min UpVotes (keras):\t\t", parsefile.DownVotesInfo(open("data/KerasQueryResults.csv")))
+    print("avg/max/min UpVotes (caffe):\t\t", parsefile.DownVotesInfo(open("data/CaffeQueryResults.csv")))
+    print("avg/max/min UpVotes (tensorflow):\t", parsefile.DownVotesInfo(open("data/TensorflowQueryResults.csv")))
+    print("avg/max/min UpVotes (theano):\t\t", parsefile.DownVotesInfo(open("data/TheanoQueryResults.csv")))
+
+def getKeyWords():
+    print("Most common words used in (mxnet):\t\t", parsefile.CountKeyWords(open("data/MXnetQueryResults.csv")))
+    print("Most common words used in (Dl4j):\t\t", parsefile.CountKeyWords(open("data/DL4jQueryResults.csv")))
+    print("Most common words used in (dlib):\t\t", parsefile.CountKeyWords(open("data/DLibQueryResults.csv")))
+    print("Most common words used in (pytorch):\t", parsefile.CountKeyWords(open("data/PytorchQueryResults.csv")))
+    print("Most common words used in (keras):\t\t", parsefile.CountKeyWords(open("data/KerasQueryResults.csv")))
+    print("Most common words used in (caffe):\t\t", parsefile.CountKeyWords(open("data/CaffeQueryResults.csv")))
+    print("Most common words used in (tensorflow):\t", parsefile.CountKeyWords(open("data/TensorflowQueryResults.csv")))
+    print("Most common words used in (theano):\t\t", parsefile.CountKeyWords(open("data/TheanoQueryResults.csv")))
+
+
+
+
+
 def convertData(data):
     try:
         newdata = [x.days for x in data]
@@ -92,22 +127,33 @@ def graphStats(getfunction, title, ax):
 def main():
     plt.figure(1, figsize=(20, 10))
 
-    ax = plt.subplot(2, 3, 1)
+    ax = plt.subplot(2, 4, 1)
     graphStats(parsefile.getTimeInfo, "Amt Time Open", ax)
 
-    ax = plt.subplot(2, 3, 2)
+    ax = plt.subplot(2, 4, 2)
     graphStats(parsefile.getRepInfo, "User Reputation", ax)
 
-    ax = plt.subplot(2, 3, 3)
+    ax = plt.subplot(2, 4, 3)
     graphStats(parsefile.getAnswersInfo, "# Answers", ax)
 
-    ax = plt.subplot(2, 3, 4)
+    ax = plt.subplot(2, 4, 4)
     graphStats(parsefile.getCommentsInfo, "# Comments", ax)
 
-    ax = plt.subplot(2, 3, 5)
+    ax = plt.subplot(2, 4, 5)
     graphStats(parsefile.getCommentsInfo, "Score", ax)
+
+    ax = plt.subplot(2, 4, 6)
+    graphStats(parsefile.UpVotesInfo, "UpVotes", ax)
+
+    ax = plt.subplot(2, 4, 7)
+    graphStats(parsefile.DownVotesInfo, "DownVotes", ax)
 
     plt.show()
 
+    getKeyWords()
+
+
+
 if __name__=="__main__":
     main()
+
