@@ -1,5 +1,6 @@
 import csv
 import dateutil.parser as dp
+from collections import Counter
 
 def getTimeInfo(csvfile):
     csvreader = csv.reader(csvfile, delimiter=",")
@@ -159,6 +160,26 @@ def DownVotesInfo(csvfile):
 
     # return totalans / totalposts, maxans, minans
     return DownVotes
+
+
+def CountKeyWords(csvfile):
+    csvreader = csv.reader(csvfile, delimiter=",")
+
+    KeyWord = 1
+    KeyWords = ['python', 'java', 'c++', 'scala']
+    firstLine = True
+    for row in csvreader:
+        if firstLine:
+            headers = row
+            score = headers.index("Body")
+            firstLine = False
+        else:
+            comment = str(row[KeyWord])
+            comment_split = comment.split()
+            CounterWords = Counter(comment_split)
+            Keywords = CounterWords.most_common(2)
+
+    return Keywords
 
 
 
