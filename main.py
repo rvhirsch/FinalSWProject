@@ -72,19 +72,18 @@ def getAvgDownVotes():
     print("avg/max/min UpVotes (tensorflow):\t", parsefile.DownVotesInfo(open("data/TensorflowQueryResults.csv")))
     print("avg/max/min UpVotes (theano):\t\t", parsefile.DownVotesInfo(open("data/TheanoQueryResults.csv")))
 
+def prettyprintKeywords(keywords):
+    return " ".join(["{:20}".format(str(x)) for x in keywords])
+
 def getKeyWords():
-    print("Most common words used in (mxnet):\t\t", parsefile.CountKeyWords(open("data/MXnetQueryResults.csv")))
-    print("Most common words used in (Dl4j):\t\t", parsefile.CountKeyWords(open("data/DL4jQueryResults.csv")))
-    print("Most common words used in (dlib):\t\t", parsefile.CountKeyWords(open("data/DLibQueryResults.csv")))
-    print("Most common words used in (pytorch):\t", parsefile.CountKeyWords(open("data/PytorchQueryResults.csv")))
-    print("Most common words used in (keras):\t\t", parsefile.CountKeyWords(open("data/KerasQueryResults.csv")))
-    print("Most common words used in (caffe):\t\t", parsefile.CountKeyWords(open("data/CaffeQueryResults.csv")))
-    print("Most common words used in (tensorflow):\t", parsefile.CountKeyWords(open("data/TensorflowQueryResults.csv")))
-    print("Most common words used in (theano):\t\t", parsefile.CountKeyWords(open("data/TheanoQueryResults.csv")))
-
-
-
-
+    print("Most common words used in (mxnet):\t\t", prettyprintKeywords(parsefile.CountKeyWords(open("data/MXnetQueryResults.csv"))))
+    print("Most common words used in (Dl4j):\t\t", prettyprintKeywords(parsefile.CountKeyWords(open("data/DL4jQueryResults.csv"))))
+    print("Most common words used in (dlib):\t\t", prettyprintKeywords(parsefile.CountKeyWords(open("data/DLibQueryResults.csv"))))
+    print("Most common words used in (pytorch):\t", prettyprintKeywords(parsefile.CountKeyWords(open("data/PytorchQueryResults.csv"))))
+    print("Most common words used in (keras):\t\t", prettyprintKeywords(parsefile.CountKeyWords(open("data/KerasQueryResults.csv"))))
+    print("Most common words used in (caffe):\t\t", prettyprintKeywords(parsefile.CountKeyWords(open("data/CaffeQueryResults.csv"))))
+    print("Most common words used in (tensorflow):\t", prettyprintKeywords(parsefile.CountKeyWords(open("data/TensorflowQueryResults.csv"))))
+    print("Most common words used in (theano):\t\t", prettyprintKeywords(parsefile.CountKeyWords(open("data/TheanoQueryResults.csv"))))
 
 def convertData(data):
     try:
