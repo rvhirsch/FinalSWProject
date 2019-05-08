@@ -111,7 +111,7 @@ def getScoreInfo(csvfile):
     return scores
 
 
-def upVotesInfo(csvfile):
+def UpVotesInfo(csvfile):
     csvreader = csv.reader(csvfile, delimiter=",")
 
     UpVote = -1

@@ -52,14 +52,14 @@ def getAvgScore():
     print("avg/max/min score (theano):\t\t", parsefile.getScoreInfo(open("data/TheanoQueryResults.csv")))
 
 def getAvgUpVotes():
-    print("avg/max/min UpVotes (mxnet):\t\t", parsefile.upVotesInfo(open("data/MXnetQueryResults.csv")))
-    print("avg/max/min UpVotes (Dl4j):\t\t", parsefile.upVotesInfo(open("data/DL4jQueryResults.csv")))
-    print("avg/max/min UpVotes (dlib):\t\t", parsefile.upVotesInfo(open("data/DLibQueryResults.csv")))
-    print("avg/max/min UpVotes (pytorch):\t", parsefile.upVotesInfo(open("data/PytorchQueryResults.csv")))
-    print("avg/max/min UpVotes (keras):\t\t", parsefile.upVotesInfo(open("data/KerasQueryResults.csv")))
-    print("avg/max/min UpVotes (caffe):\t\t", parsefile.upVotesInfo(open("data/CaffeQueryResults.csv")))
-    print("avg/max/min UpVotes (tensorflow):\t", parsefile.upVotesInfo(open("data/TensorflowQueryResults.csv")))
-    print("avg/max/min UpVotes (theano):\t\t", parsefile.upVotesInfo(open("data/TheanoQueryResults.csv")))
+    print("avg/max/min UpVotes (mxnet):\t\t", parsefile.UpVotesInfo(open("data/MXnetQueryResults.csv")))
+    print("avg/max/min UpVotes (Dl4j):\t\t", parsefile.UpVotesInfo(open("data/DL4jQueryResults.csv")))
+    print("avg/max/min UpVotes (dlib):\t\t", parsefile.UpVotesInfo(open("data/DLibQueryResults.csv")))
+    print("avg/max/min UpVotes (pytorch):\t", parsefile.UpVotesInfo(open("data/PytorchQueryResults.csv")))
+    print("avg/max/min UpVotes (keras):\t\t", parsefile.UpVotesInfo(open("data/KerasQueryResults.csv")))
+    print("avg/max/min UpVotes (caffe):\t\t", parsefile.UpVotesInfo(open("data/CaffeQueryResults.csv")))
+    print("avg/max/min UpVotes (tensorflow):\t", parsefile.UpVotesInfo(open("data/TensorflowQueryResults.csv")))
+    print("avg/max/min UpVotes (theano):\t\t", parsefile.UpVotesInfo(open("data/TheanoQueryResults.csv")))
 
 
 def getAvgDownVotes():
@@ -130,7 +130,7 @@ def main():
     graphStats(parsefile.getCommentsInfo, "Score", ax)
 
     ax = plt.subplot(2, 4, 6)
-    graphStats(parsefile.upVotesInfo, "UpVotes", ax)
+    graphStats(parsefile.UpVotesInfo, "UpVotes", ax)
 
     ax = plt.subplot(2, 4, 7)
     graphStats(parsefile.DownVotesInfo, "DownVotes", ax)
