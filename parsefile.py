@@ -1,4 +1,5 @@
 import csv
+import re
 import dateutil.parser as dp
 from collections import Counter
 
@@ -174,7 +175,8 @@ def CountKeyWords(csvfile):
             score = headers.index("Body")
             firstLine = False
         else:
-            comment = str(row[KeyWord])
+            rowstr = re.sub('\W+ ', '', str(row[KeyWord]))
+            comment = str(rowstr)
             comment_split = comment.split()
             CounterWords = Counter(comment_split)
             Keywords = CounterWords.most_common(2)
