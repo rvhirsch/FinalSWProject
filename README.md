@@ -29,3 +29,5 @@ WHERE
 - Fig 1: boxplots of data for all repos
 
 - Fig 2: word clouds for each repo
+
+- Fig 3: bar charts of data for all repos (using same data as Fig 1)
