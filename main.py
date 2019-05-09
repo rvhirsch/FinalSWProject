@@ -56,6 +56,28 @@ def getKeyWords():
         print("Most common words used in (" + name + "):\t\t",
               prettyprintKeywords(parsefile.CountKeyWords(open(file))))
 
+def graphBarStats(getfunction, title, ax):
+    avgs = []
+    mins = []
+    maxs = []
+    names = [""]
+
+    for name, file in files.items():
+        times = convertData(getfunction(open(file)))
+        avgs.append(sum(times)/len(times))
+        mins.append(min(times))
+        maxs.append(max(times))
+        names.append(name)
+
+    rng = len(files.keys())
+    w = 0.25
+    ax.bar([x-w for x in range(rng)], mins, width=w, color="green", label="Min", align="edge")
+    ax.bar([x for x in range(rng)], avgs, width=w, color="blue", label="Avg")
+    ax.bar([x+w for x in range(rng)], maxs, width=w, color="red", label="Max")
+    ax.set_xticklabels(names, rotation=45, ha="right")
+    ax.set_title(title)
+    plt.legend(["Min", "Avg", "Max"], loc=2) # 2 = upper left
+
 def graphStats(getfunction, title, ax):
     datatoplot = []
 
@@ -162,6 +184,40 @@ def plotfig2():
     plt.tight_layout(pad=0.4, w_pad=0.5, h_pad=1.0)
     plt.show()
 
+def plotfig3():
+    plt.figure(3, figsize=(20, 10))
+
+    ax = plt.subplot(2, 4, 1)
+    graphBarStats(parsefile.getTimeInfo, "Amt Time Open", ax)
+    print("Done *")
+
+    ax = plt.subplot(2, 4, 2)
+    graphBarStats(parsefile.getRepInfo, "User Reputation", ax)
+    print("Done **")
+
+    ax = plt.subplot(2, 4, 3)
+    graphBarStats(parsefile.getAnswersInfo, "# Answers", ax)
+    print("Done ***")
+
+    ax = plt.subplot(2, 4, 4)
+    graphBarStats(parsefile.getCommentsInfo, "# Comments", ax)
+    print("Done ****")
+
+    ax = plt.subplot(2, 4, 5)
+    graphBarStats(parsefile.getCommentsInfo, "Score", ax)
+    print("Done *****")
+
+    ax = plt.subplot(2, 4, 6)
+    graphBarStats(parsefile.UpVotesInfo, "UpVotes", ax)
+    print("Done ******")
+
+    ax = plt.subplot(2, 4, 7)
+    graphBarStats(parsefile.DownVotesInfo, "DownVotes", ax)
+    print("Done *******")
+
+    plt.tight_layout(pad=0.4, w_pad=0.5, h_pad=1.0)
+    plt.show()
+
 def main():
     # getAvgTimes()
     # getAvgReps()
@@ -171,14 +227,9 @@ def main():
     # getAvgUpVotes()
     # getKeyWords()
 
-    plotfig1()
+    # plotfig1()
     # plotfig2()
-
-    # getKeyWords()
-
-
-
-
+    plotfig3()
 
 if __name__=="__main__":
     main()
