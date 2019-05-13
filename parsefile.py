@@ -122,7 +122,7 @@ def UpVotesInfo(csvfile):
     for row in csvreader:
         if firstLine:
             headers = row
-            score = headers.index("UpVotes")
+            UpVote = headers.index("UpVotes")
             firstLine = False
         else:
             countVote = int(row[UpVote])
@@ -147,7 +147,7 @@ def DownVotesInfo(csvfile):
     for row in csvreader:
         if firstLine:
             headers = row
-            score = headers.index("DownVotes")
+            DownVote = headers.index("DownVotes")
             firstLine = False
         else:
             countVote = int(row[DownVote])

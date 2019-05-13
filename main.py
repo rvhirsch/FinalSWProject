@@ -46,7 +46,7 @@ def getAvgUpVotes():
 
 def getAvgDownVotes():
     for name, file in files.items():
-        printstats(parsefile.UpVotesInfo, file, "UpVotes ("+name+"):")
+        printstats(parsefile.DownVotesInfo, file, "DownVotes ("+name+"):")
 
 def prettyprintKeywords(keywords):
     return " ".join(["{:25}".format(str(x)) for x in keywords])
@@ -224,12 +224,13 @@ def main():
     # getAvgAnswers()
     # getAvgComments()
     # getAvgScore()
-    # getAvgUpVotes()
+    getAvgUpVotes()
+    getAvgDownVotes()
     # getKeyWords()
 
     # plotfig1()
     # plotfig2()
-    plotfig3()
+    # plotfig3()
 
 if __name__=="__main__":
     main()
