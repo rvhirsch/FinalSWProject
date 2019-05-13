@@ -193,7 +193,7 @@ def CountKeyWords(csvfile):
             body = headers.index("Body")
             firstLine = False
         else:
-            newwords = removesmallwords(cleanhtml(row[body]).split())
+            newwords = removesmallwords(cleanhtml(row[body].lower()).split())
             allwords.extend(newwords)
 
     CounterWords = Counter(allwords)

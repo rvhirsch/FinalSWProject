@@ -224,9 +224,9 @@ def main():
     # getAvgAnswers()
     # getAvgComments()
     # getAvgScore()
-    getAvgUpVotes()
-    getAvgDownVotes()
-    # getKeyWords()
+    # getAvgUpVotes()
+    # getAvgDownVotes()
+    getKeyWords()
 
     # plotfig1()
     # plotfig2()
