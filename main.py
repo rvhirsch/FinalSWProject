@@ -20,6 +20,19 @@ def printstats(function, filename, title):
     times = convertData(times)
     print("%-25s AVG: %10.2f  MAX: %10.2f  MIN: %5.2f" % (title, sum(times)/len(times), max(times), min(times)))
 
+def graphNumPosts():
+    vals = {"pytorch": 3021, "MXnet": 488, "keras": 16848, "tensorflow": 42395,
+            "caffe": 2887, "DL4j": 253, "DLib": 1494, "theano": 2408}
+
+    fig, ax = plt.subplots()
+    ind = [x for x in range(len(vals))]
+
+    plt.bar(ind, list(vals.values()))
+
+    ax.set_xticklabels([""] + list(vals.keys()), rotation=45, ha="right")
+    ax.set_title('Total Number of Posts')
+    plt.show()
+
 def getAvgTimes():
     for name, file in files.items():
         printstats(parsefile.getTimeInfo, file, "time open ("+name+"):")
@@ -219,6 +232,7 @@ def plotfig3():
     plt.show()
 
 def main():
+    graphNumPosts()
     # getAvgTimes()
     # getAvgReps()
     # getAvgAnswers()
@@ -226,7 +240,7 @@ def main():
     # getAvgScore()
     # getAvgUpVotes()
     # getAvgDownVotes()
-    getKeyWords()
+    # getKeyWords()
 
     # plotfig1()
     # plotfig2()
